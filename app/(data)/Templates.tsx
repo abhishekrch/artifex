@@ -24,7 +24,7 @@ export default [
         name: 'Blog Content',
         desc: 'An AI tool that generates blog content based on the provided niche and outline.',
         category: 'Blog',
-        icon: '',
+        icon: 'https://cdn-icons-png.flaticon.com/128/2593/2593549.png',
         aiPrompot: 'Generate a well-structured blog post with an introduction, main points, and conclusion based on the given niche and outline.',
         slug: 'generate-blog-content',
         form: [
@@ -45,7 +45,7 @@ export default [
         name: 'Blog Topic Ideas',
         desc: 'An AI tool that generates blog topic ideas based on your niche.',
         category: 'Blog',
-        icon: '',
+        icon: 'https://cdn-icons-png.flaticon.com/128/10026/10026257.png',
         aiPrompot: 'Give me 10 blog topic ideas in bullet points based on the given niche.',
         slug: 'generate-blog-topic-ideas',
         form: [
@@ -61,7 +61,7 @@ export default [
         name: 'Youtube SEO Title',
         desc: 'An AI tool that generates optimized YouTube SEO titles.',
         category: 'YouTube',
-        icon: '',
+        icon: 'https://cdn-icons-png.flaticon.com/128/15302/15302398.png',
         aiPrompot: 'Generate an engaging and SEO-friendly YouTube title based on the provided topic.',
         slug: 'youtube-seo-title',
         form: [
@@ -77,7 +77,7 @@ export default [
         name: 'Youtube Description',
         desc: 'An AI tool that generates YouTube video descriptions.',
         category: 'YouTube',
-        icon: '',
+        icon: 'https://cdn-icons-png.flaticon.com/128/10885/10885022.png',
         aiPrompot: 'Generate an engaging YouTube video description with a call to action.',
         slug: 'youtube-description',
         form: [
@@ -93,7 +93,7 @@ export default [
         name: 'Add Emoji to Text',
         desc: 'An AI tool that enhances text by adding relevant emojis.',
         category: 'Text',
-        icon: '',
+        icon: 'https://cdn-icons-png.flaticon.com/128/1665/1665944.png',
         aiPrompot: 'Enhance the given text by adding relevant emojis while keeping the original meaning.',
         slug: 'add-emoji-to-text',
         form: [
@@ -109,7 +109,7 @@ export default [
         name: 'Instagram Post Generator',
         desc: 'An AI tool that creates engaging Instagram posts.',
         category: 'Social Media',
-        icon: '',
+        icon: 'https://cdn-icons-png.flaticon.com/128/1322/1322090.png',
         aiPrompot: 'Generate an engaging Instagram post based on the provided topic.',
         slug: 'instagram-post-generator',
         form: [
@@ -125,7 +125,7 @@ export default [
         name: 'Rewrite Article (Plagiarism Free)',
         desc: 'An AI tool that rewrites articles while ensuring plagiarism-free content.',
         category: 'Writing',
-        icon: '',
+        icon: 'https://cdn-icons-png.flaticon.com/128/7850/7850484.png',
         aiPrompot: 'Rewrite the given article while maintaining the original meaning and making it plagiarism-free.',
         slug: 'rewrite-article',
         form: [
@@ -141,7 +141,7 @@ export default [
         name: 'Youtube Tags',
         desc: 'An AI tool that generates optimized YouTube tags.',
         category: 'YouTube',
-        icon: '',
+        icon: 'https://cdn-icons-png.flaticon.com/128/5968/5968852.png',
         aiPrompot: 'Generate a list of SEO-friendly YouTube tags based on the given video topic.',
         slug: 'youtube-tags',
         form: [
