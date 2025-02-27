@@ -1,11 +1,20 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import "@toast-ui/editor/dist/toastui-editor.css";
 import { Editor } from "@toast-ui/react-editor";
 import { Button } from "@/components/ui/button";
 import { Copy } from "lucide-react";
 
-function OutputSection() {
+interface props {
+  aiOutput: string;
+}
+
+function OutputSection({aiOutput}: props) {
   const editorRef:any = useRef(null);
+
+  useEffect(() => {
+    const editorInstance = editorRef.current.getInstance();
+    editorInstance.setMarkdown(aiOutput);
+  }, [aiOutput])
 
   const handleEditorChange = () => {
     if (editorRef.current) {
