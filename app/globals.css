@@ -93,3 +93,7 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+.table-header {
+  @apply px-6 py-3 text-left text-sm font-bold text-black uppercase tracking-wider;
+}
