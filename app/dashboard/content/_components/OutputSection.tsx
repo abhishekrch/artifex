@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useRef } from "react";
 import "@toast-ui/editor/dist/toastui-editor.css";
 import { Editor } from "@toast-ui/react-editor";
@@ -8,13 +10,13 @@ interface props {
   aiOutput: string;
 }
 
-function OutputSection({aiOutput}: props) {
-  const editorRef:any = useRef(null);
+function OutputSection({ aiOutput }: props) {
+  const editorRef: any = useRef(null);
 
   useEffect(() => {
     const editorInstance = editorRef.current.getInstance();
     editorInstance.setMarkdown(aiOutput);
-  }, [aiOutput])
+  }, [aiOutput]);
 
   const handleEditorChange = () => {
     if (editorRef.current) {
@@ -31,7 +33,7 @@ function OutputSection({aiOutput}: props) {
         </Button>
       </div>
       <Editor
-      ref={editorRef}
+        ref={editorRef}
         initialValue="Your result will appear here"
         initialEditType="wysiwyg"
         height="600px"

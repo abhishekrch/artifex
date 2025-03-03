@@ -8,11 +8,13 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { chatSession } from "@/utils/AiModal";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { db } from "@/utils/db";
 import { AIOutput } from "@/utils/schema";
 import { useUser } from "@clerk/nextjs";
 import moment from "moment";
+import { TotalUsageContext } from "@/app/(context)/TotalUsageContext";
+import { useRouter } from "next/navigation";
 
 interface PROPS {
   params: {
@@ -27,12 +29,21 @@ function CreateNewContent(props: PROPS) {
   const [loading, setLoading] = useState(false);
   const [aiOutput, setAiOutput] = useState<string>();
   const { user } = useUser();
+  const router = useRouter();
+  const { totalUsage, setTotalUsage } = useContext(TotalUsageContext);
 
   if (!selectedTemplate) {
     return <div className="p-5">Template not found.</div>;
   }
 
   const GenerateAIContent = async (formData: any) => {
+    if (totalUsage >= 10000) {
+      alert(
+        "You have reached your limit of 10000 words. Please upgrade your plan."
+      );
+      router.push("/dashboard/billing");
+      return;
+    }
     setLoading(true);
     const SelectedPrompt = selectedTemplate?.aiPrompot;
 
@@ -46,7 +57,7 @@ function CreateNewContent(props: PROPS) {
     setLoading(false);
   };
 
-  const SaveInDb = async (formData: any, slug:any, aiResp: string) => {
+  const SaveInDb = async (formData: any, slug: any, aiResp: string) => {
     if (!user?.primaryEmailAddress?.emailAddress) {
       console.error("User email is undefined");
       return;
@@ -54,13 +65,12 @@ function CreateNewContent(props: PROPS) {
 
     const result = await db.insert(AIOutput).values({
       formData: formData,
-      templateSlug:slug,
+      templateSlug: slug,
       aiResponse: aiResp,
       createdBy: user?.primaryEmailAddress?.emailAddress,
-      createdAt: moment().format('DD/MM/YYYY'),
-    })
-    
-  }
+      createdAt: moment().format("DD/MM/YYYY"),
+    });
+  };
 
   return (
     <div className="p-10">
@@ -77,7 +87,7 @@ function CreateNewContent(props: PROPS) {
           loading={loading}
         />
         <div className="col-span-2">
-        <OutputSection aiOutput={aiOutput ?? ""} />
+          <OutputSection aiOutput={aiOutput ?? ""} />
         </div>
       </div>
     </div>
