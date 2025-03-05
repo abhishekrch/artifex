@@ -97,3 +97,6 @@ body {
 .table-header {
   @apply px-6 py-3 text-left text-sm font-bold text-black uppercase tracking-wider;
 }
+.check {
+  @apply h-5 w-5 text-green-500 mr-2
+}
