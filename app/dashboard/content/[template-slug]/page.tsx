@@ -15,6 +15,7 @@ import { useUser } from "@clerk/nextjs";
 import moment from "moment";
 import { TotalUsageContext } from "@/app/(context)/TotalUsageContext";
 import { useRouter } from "next/navigation";
+import { UserSubscriptionContext } from "@/app/(context)/UserSubscriptionContext";
 
 interface PROPS {
   params: {
@@ -31,13 +32,16 @@ function CreateNewContent(props: PROPS) {
   const { user } = useUser();
   const router = useRouter();
   const { totalUsage, setTotalUsage } = useContext(TotalUsageContext);
+  const { userSubscription, setUserSubscription } = useContext(
+    UserSubscriptionContext
+  );
 
   if (!selectedTemplate) {
     return <div className="p-5">Template not found.</div>;
   }
 
   const GenerateAIContent = async (formData: any) => {
-    if (totalUsage >= 10000) {
+    if (totalUsage >= 10000 && !userSubscription) {
       alert(
         "You have reached your limit of 10000 words. Please upgrade your plan."
       );

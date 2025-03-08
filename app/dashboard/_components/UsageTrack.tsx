@@ -1,19 +1,25 @@
 "use client";
 
 import { TotalUsageContext } from "@/app/(context)/TotalUsageContext";
+import { UserSubscriptionContext } from "@/app/(context)/UserSubscriptionContext";
 import { Button } from "@/components/ui/button";
 import { db } from "@/utils/db";
-import { AIOutput } from "@/utils/schema";
+import { AIOutput, UserSubscription } from "@/utils/schema";
 import { useUser } from "@clerk/nextjs";
 import { eq } from "drizzle-orm";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 
 function UsageTrack() {
   const { user } = useUser();
   const { totalUsage, setTotalUsage } = useContext(TotalUsageContext);
+  const { userSubscription, setUserSubscription } = useContext(
+    UserSubscriptionContext
+  );
+  const [maxWords, setMaxWords] = useState(10000);
 
   useEffect(() => {
     user && GetData();
+    user && IsUserSubscribe();
   }, [user]);
 
   const GetData = async () => {
@@ -26,6 +32,22 @@ function UsageTrack() {
 
     GetTotalUsage(result);
   };
+
+  const IsUserSubscribe = async () => {
+    const userEmail = user?.primaryEmailAddress?.emailAddress;
+    if (!userEmail) return;
+
+    const result = await db
+      .select()
+      .from(UserSubscription)
+      .where(eq(UserSubscription.email, userEmail));
+
+    if (result) {
+      setUserSubscription(true);
+      setMaxWords(100000);
+    }
+  };
+
   // remove any later
   const GetTotalUsage = (result: any[]) => {
     let total: number = 0;
@@ -43,10 +65,12 @@ function UsageTrack() {
         <div className="h-2 bg-[#9981f9] w-full rounded-full mt-3">
           <div
             className="h-2 bg-white rounded-full"
-            style={{ width: (totalUsage / 10000) * 100 + "%" }}
+            style={{ width: (totalUsage / maxWords) * 100 + "%" }}
           ></div>
         </div>
-        <h2 className="text-sm my-2">{totalUsage}/10,000 Credit Used</h2>
+        <h2 className="text-sm my-2">
+          {totalUsage}/{maxWords} Credit Used
+        </h2>
       </div>
       <Button variant={"secondary"} className="w-full my-3 text-primary">
         Upgrade
