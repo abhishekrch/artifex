@@ -1,6 +1,7 @@
 "use client";
 
 import { TotalUsageContext } from "@/app/(context)/TotalUsageContext";
+import { UpdateCreditUsageContext } from "@/app/(context)/UpdateCreditUsageContext";
 import { UserSubscriptionContext } from "@/app/(context)/UserSubscriptionContext";
 import { Button } from "@/components/ui/button";
 import { db } from "@/utils/db";
@@ -15,12 +16,19 @@ function UsageTrack() {
   const { userSubscription, setUserSubscription } = useContext(
     UserSubscriptionContext
   );
+  const { updateCreditUsage, setUpdateCreditUsage } = useContext(
+    UpdateCreditUsageContext
+  );
   const [maxWords, setMaxWords] = useState(10000);
 
   useEffect(() => {
     user && GetData();
     user && IsUserSubscribe();
   }, [user]);
+
+  useEffect(() => {
+    user && GetData();
+  }, [updateCreditUsage && user]);
 
   const GetData = async () => {
     const result = await db
@@ -42,7 +50,7 @@ function UsageTrack() {
       .from(UserSubscription)
       .where(eq(UserSubscription.email, userEmail));
 
-    if (result) {
+    if (result && result.length > 0) {
       setUserSubscription(true);
       setMaxWords(100000);
     }

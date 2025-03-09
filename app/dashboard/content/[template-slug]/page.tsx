@@ -16,6 +16,7 @@ import moment from "moment";
 import { TotalUsageContext } from "@/app/(context)/TotalUsageContext";
 import { useRouter } from "next/navigation";
 import { UserSubscriptionContext } from "@/app/(context)/UserSubscriptionContext";
+import { UpdateCreditUsageContext } from "@/app/(context)/UpdateCreditUsageContext";
 
 interface PROPS {
   params: {
@@ -34,6 +35,9 @@ function CreateNewContent(props: PROPS) {
   const { totalUsage, setTotalUsage } = useContext(TotalUsageContext);
   const { userSubscription, setUserSubscription } = useContext(
     UserSubscriptionContext
+  );
+  const { updateCreditUsage, setUpdateCreditUsage } = useContext(
+    UpdateCreditUsageContext
   );
 
   if (!selectedTemplate) {
@@ -59,6 +63,7 @@ function CreateNewContent(props: PROPS) {
     setAiOutput(result?.response.text());
     await SaveInDb(formData, selectedTemplate?.slug, result?.response.text());
     setLoading(false);
+    setUpdateCreditUsage(Date.now());
   };
 
   const SaveInDb = async (formData: any, slug: any, aiResp: string) => {

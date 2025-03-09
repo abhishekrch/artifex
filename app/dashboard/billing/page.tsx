@@ -60,6 +60,7 @@ function Billing() {
       joinDate: moment().format("DD/MM/yyyy"),
     });
     if (result) {
+      setUserSubscription(true);
       window.location.reload();
     }
   };
@@ -103,7 +104,7 @@ function Billing() {
               className="w-full bg-slate-600 hover:bg-slate-700 text-white"
               disabled
             >
-              Currently Active Plan
+              {userSubscription ? "Plan Upgraded" : "Currently Active Plan"}
             </Button>
           </CardContent>
         </Card>
@@ -138,11 +139,13 @@ function Billing() {
             </div>
 
             <Button
-              disabled={loading}
-              className="w-full"
-              onClick={() => CreateSubscription()}
+              disabled={loading || userSubscription}
+              className={`w-full ${
+                userSubscription ? "bg-green-600 hover:bg-green-700" : ""
+              }`}
+              onClick={() => !userSubscription && CreateSubscription()}
             >
-              {loading && <Loader2Icon className="animate-spin" />}
+              {loading && <Loader2Icon className="animate-spin mr-2" />}
               {userSubscription ? "Active Plan" : "Get Started"}
             </Button>
           </CardContent>
