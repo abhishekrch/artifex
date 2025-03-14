@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
-import { Calendar, Image as ImageIcon, BookOpen, HelpCircle, ChevronRight, ArrowRight } from "lucide-react";
+import { Calendar, Image as ImageIcon, BookOpen, HelpCircle, ChevronRight, ArrowRight, Check } from "lucide-react";
 
 export default function Home() {
   return (
@@ -18,7 +18,7 @@ export default function Home() {
             Features
           </Link>
           <Button className="bg-primary hover:bg-primary/90 text-white font-medium rounded-full px-6 py-2 transition-all shadow-md hover:shadow-lg" asChild>
-            <Link href="/sign-in">Get Started</Link>
+            <Link href="/sign-in">Sign In</Link>
           </Button>
         </div>
       </nav>
@@ -66,15 +66,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      <div className="flex justify-center my-8">
-        <div className="bg-white/90 backdrop-blur-sm px-6 py-3 rounded-full flex items-center gap-3 shadow-md border border-gray-100">
-          <span className="font-medium">Premium Membership - Unlock unlimited content generation</span>
-          <Button variant="ghost" size="sm" className="rounded-full p-0 w-8 h-8 flex items-center justify-center bg-primary/10 text-primary">
-            <ChevronRight size={16} />
-          </Button>
-        </div>
-      </div>
 
       <section id="features" className="container mx-auto px-4 py-16">
         <div className="text-center mb-16">
@@ -142,17 +133,142 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="w-full bg-blue-600 py-16">
-        <div className="container mx-auto px-4 text-center max-w-4xl">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Ready to Simplify Your Content Creation?</h2>
-          <p className="text-white/90 max-w-2xl mx-auto mb-8">
-            Join thousands of professionals who trust Artifex for efficient content generation.
-          </p>
-          <Button size="lg" className="bg-white hover:bg-gray-100 text-blue-600 font-medium px-8 py-3 rounded-md shadow-md" asChild>
-            <Link href="/sign-in" className="flex items-center gap-2">
-              Start For Free <ArrowRight size={16} />
-            </Link>
-          </Button>
+      <section id="pricing" className="container mx-auto px-4 py-16 bg-gradient-to-b from-slate-50 to-slate-100">
+        <div className="text-center mb-10">
+          <h2 className="text-3xl font-bold mb-2">Pricing</h2>
+          <p className="text-2xl font-bold mb-6">Flexible Pricing to Fit your needs</p>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 flex flex-col">
+            <h3 className="text-4xl font-bold mb-1">$0</h3>
+            <p className="text-xl font-semibold mb-4">Free</p>
+            <p className="text-gray-600 mb-6">For small teams just getting started</p>
+            
+            <div className="space-y-4 mb-8 flex-grow">
+              <div className="flex items-center">
+                <div className="w-5 h-5 rounded-full bg-primary flex items-center justify-center mr-3">
+                  <Check size={12} className="text-white" />
+                </div>
+                <span>10,000 words per month</span>
+              </div>
+              <div className="flex items-center">
+                <div className="w-5 h-5 rounded-full bg-primary flex items-center justify-center mr-3">
+                  <Check size={12} className="text-white" />
+                </div>
+                <span>5 templates</span>
+              </div>
+              <div className="flex items-center">
+                <div className="w-5 h-5 rounded-full bg-primary flex items-center justify-center mr-3">
+                  <Check size={12} className="text-white" />
+                </div>
+                <span>Basic content formats</span>
+              </div>
+              <div className="flex items-center">
+                <div className="w-5 h-5 rounded-full bg-primary flex items-center justify-center mr-3">
+                  <Check size={12} className="text-white" />
+                </div>
+                <span>Email support</span>
+              </div>
+            </div>
+            
+            <Button variant="outline" className="w-full border-gray-300 hover:bg-gray-50">
+              Select Plan
+            </Button>
+          </div>
+          
+          <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 flex flex-col relative">
+            <div className="absolute -top-3 right-8 bg-primary text-white text-xs px-3 py-1 rounded-md">
+              Popular
+            </div>
+            <h3 className="text-4xl font-bold mb-1">$6.99</h3>
+            <p className="text-xl font-semibold mb-4">Monthly</p>
+            <p className="text-gray-600 mb-6">For growing teams</p>
+            
+            <div className="space-y-4 mb-8 flex-grow">
+              <div className="flex items-center">
+                <div className="w-5 h-5 rounded-full bg-primary flex items-center justify-center mr-3">
+                  <Check size={12} className="text-white" />
+                </div>
+                <span>100,000 words per month</span>
+              </div>
+              <div className="flex items-center">
+                <div className="w-5 h-5 rounded-full bg-primary flex items-center justify-center mr-3">
+                  <Check size={12} className="text-white" />
+                </div>
+                <span>All templates</span>
+              </div>
+              <div className="flex items-center">
+                <div className="w-5 h-5 rounded-full bg-primary flex items-center justify-center mr-3">
+                  <Check size={12} className="text-white" />
+                </div>
+                <span>Advanced content formats</span>
+              </div>
+              <div className="flex items-center">
+                <div className="w-5 h-5 rounded-full bg-primary flex items-center justify-center mr-3">
+                  <Check size={12} className="text-white" />
+                </div>
+                <span>Priority support</span>
+              </div>
+            </div>
+            
+            <Button className="w-full bg-primary hover:bg-primary/90 text-white">
+              Select Plan
+            </Button>
+          </div>
+          
+          <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 flex flex-col">
+            <h3 className="text-4xl font-bold mb-1">$39.99</h3>
+            <p className="text-xl font-semibold mb-4">Yearly</p>
+            <p className="text-gray-600 mb-6">Upgrade to save more!</p>
+            
+            <div className="space-y-4 mb-8 flex-grow">
+              <div className="flex items-center">
+                <div className="w-5 h-5 rounded-full bg-primary flex items-center justify-center mr-3">
+                  <Check size={12} className="text-white" />
+                </div>
+                <span>Unlimited words</span>
+              </div>
+              <div className="flex items-center">
+                <div className="w-5 h-5 rounded-full bg-primary flex items-center justify-center mr-3">
+                  <Check size={12} className="text-white" />
+                </div>
+                <span>All templates + premium</span>
+              </div>
+              <div className="flex items-center">
+                <div className="w-5 h-5 rounded-full bg-primary flex items-center justify-center mr-3">
+                  <Check size={12} className="text-white" />
+                </div>
+                <span>Custom content formats</span>
+              </div>
+              <div className="flex items-center">
+                <div className="w-5 h-5 rounded-full bg-primary flex items-center justify-center mr-3">
+                  <Check size={12} className="text-white" />
+                </div>
+                <span>24/7 dedicated support</span>
+              </div>
+            </div>
+            
+            <Button variant="outline" className="w-full border-gray-300 hover:bg-primary/10 hover:text-primary hover:border-primary">
+              Select Plan
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      <section className="w-full py-16">
+        <div className="container mx-auto px-4">
+          <div className="bg-[#6c5ce7] rounded-xl py-12 px-8 text-center">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Ready to Simplify Your Content Creation?</h2>
+            <p className="text-white/90 max-w-2xl mx-auto mb-8">
+              Join thousands of professionals who trust Artifex for efficient content generation.
+            </p>
+            <Button size="lg" className="bg-white hover:bg-gray-100 text-[#6c5ce7] font-medium px-8 py-3 rounded-md shadow-md" asChild>
+              <Link href="/sign-in" className="flex items-center gap-2">
+                Start For Free <ArrowRight size={16} />
+              </Link>
+            </Button>
+          </div>
         </div>
       </section>
 
